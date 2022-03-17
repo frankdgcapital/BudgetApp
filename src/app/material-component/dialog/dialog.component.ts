@@ -32,8 +32,8 @@ export class DialogOverviewExampleDialogComponent {
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent {
-  animal: string='';
-  name: string='';
+  animal = '';
+  name = '';
 
   constructor(public dialog: MatDialog) { }
 
