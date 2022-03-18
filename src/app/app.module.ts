@@ -22,6 +22,7 @@ import { FirebaseService } from './services/firebase.service';
 import { ToastrModule } from 'ngx-toastr';
 import { NotificationService } from './services/notification.service';
 
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -32,6 +33,7 @@ import { NotificationService } from './services/notification.service';
     RouterModule,
     ToastrModule.forRoot(),
     AppRoutingModule,
+    AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,

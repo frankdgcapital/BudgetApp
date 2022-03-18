@@ -1,21 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
-import { BrowserModule  } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
-
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { redirectLoggedInTo, redirectUnauthorizedTo, AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
 import { AnonymousGuardService } from './guards/anonymous-guard.service';
 import { AuthGuardService } from './guards/auth-guard.service';
 
-const routes: Routes =[
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['sign-in']);
+const redirectLoggedInToDashboard = () => redirectLoggedInTo(['dashboard']);
+
+const routes: Routes = [
   {
     path: '',
     redirectTo: 'dashboard',
+    canActivate: [AuthGuardService],
     pathMatch: 'full',
   }, {
     path: '',
-    canActivate: [AuthGuardService],
     component: AdminLayoutComponent,
     children: [
       {
@@ -25,8 +28,8 @@ const routes: Routes =[
     ]
   }, {
     path: '',
-    canActivate: [AnonymousGuardService],
     component: AuthLayoutComponent,
+    canActivate: [AnonymousGuardService],
     children: [
       {
         path: '',
@@ -43,7 +46,7 @@ const routes: Routes =[
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes,{
+    RouterModule.forRoot(routes, {
       useHash: true
     })
   ],

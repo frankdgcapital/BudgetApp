@@ -9,6 +9,8 @@ import { NotificationService } from '../services/notification.service';
 })
 export class AuthGuardService implements CanActivate {
 
+  isAuthenticated = false;
+
   constructor(private fbService: FirebaseService,
     private notificationService: NotificationService,
     private router: Router) { }
@@ -20,8 +22,6 @@ export class AuthGuardService implements CanActivate {
       this.router.navigate(['sign-in']);
       return false;
     }
-
     return true;
   }
-
 }

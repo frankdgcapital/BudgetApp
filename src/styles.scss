@@ -4,3 +4,13 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
 }
+
+.ngx-toastr {
+    @media (min-width: 1200px) {
+      width: 650px !important;  
+    }
+
+    @media (min-width: 768px) {
+    width: 450px !important; 
+    }
+  }
