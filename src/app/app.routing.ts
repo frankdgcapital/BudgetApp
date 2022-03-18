@@ -5,6 +5,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { AnonymousGuardService } from './guards/anonymous-guard.service';
+import { AuthGuardService } from './guards/auth-guard.service';
 
 const routes: Routes =[
   {
@@ -13,6 +15,7 @@ const routes: Routes =[
     pathMatch: 'full',
   }, {
     path: '',
+    canActivate: [AnonymousGuardService],
     component: AdminLayoutComponent,
     children: [
       {
@@ -22,6 +25,7 @@ const routes: Routes =[
     ]
   }, {
     path: '',
+    canActivate: [AuthGuardService],
     component: AuthLayoutComponent,
     children: [
       {

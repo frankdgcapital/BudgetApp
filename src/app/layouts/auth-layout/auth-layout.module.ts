@@ -4,10 +4,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthLayoutRoutes } from './auth-layout.routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { LoginComponent } from '../../pages/login/login.component';
-import { RegisterComponent } from '../../pages/register/register.component';
-import { ForgotPasswordComponent } from '../../pages/forgot-password/forgot-password.component';
-import { VerifyEmailComponent } from '../../pages/verify-email/verify-email.component';
+import { LoginComponent } from '../../pages-auth/login/login.component';
+import { RegisterComponent } from '../../pages-auth/register/register.component';
+import { ForgotPasswordComponent } from '../../pages-auth/forgot-password/forgot-password.component';
+import { VerifyEmailComponent } from '../../pages-auth/verify-email/verify-email.component';
 @NgModule({
   imports: [
     CommonModule,
