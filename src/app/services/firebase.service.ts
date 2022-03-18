@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat
 import { Router } from '@angular/router';
 import { SystemUser } from '../models/system-user';
 import * as auth from 'firebase/auth';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class FirebaseService {
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
     public router: Router,
-    public ngZone: NgZone
+    public ngZone: NgZone,
+    private notificationService: NotificationService
   ) {
 
     this.afAuth.authState.subscribe((user) => {
@@ -30,31 +32,33 @@ export class FirebaseService {
     });
   }
 
-  async signIn(email: string, password: string) {
-    try {
-      const result = await this.afAuth
-        .signInWithEmailAndPassword(email, password);
-      this.ngZone.run(() => {
-        this.router.navigate(['dashboard']);
+  signIn(email: string, password: string) {
+    return this.afAuth
+      .signInWithEmailAndPassword(email, password)
+      .then((result) => {
+        this.ngZone.run(() => {
+          this.router.navigate(['dashboard']);
+        });
+        this.setUserData(result.user);
+      })
+      .catch((error) => {
+        this.notificationService.showError(error.message, 'Sign In');
       });
-      this.setUserData(result.user);
-    } catch (error) {
-      window.alert(error.message);
-    }
   }
 
-  async signUp(email: string, password: string) {
-    try {
-      const result = await this.afAuth
-        .createUserWithEmailAndPassword(email, password);
-      this.sendVerificationMail();
-      this.setUserData(result.user);
-    } catch (error) {
-      window.alert(error.message);
-    }
+  signUp(email: string, password: string) {
+    return this.afAuth
+      .createUserWithEmailAndPassword(email, password)
+      .then((result) => {
+        this.sendVerificationMail();
+        this.setUserData(result.user);
+      })
+      .catch((error) => {
+        this.notificationService.showError(error.message, 'Sign Up');
+      });
   }
 
-  async sendVerificationMail() {
+  sendVerificationMail() {
     return this.afAuth.currentUser
       .then((u: any) => u.sendEmailVerification())
       .then(() => {
@@ -62,14 +66,14 @@ export class FirebaseService {
       });
   }
 
-  async forgotPassword(passwordResetEmail: string) {
+  forgotPassword(passwordResetEmail: string) {
     return this.afAuth
       .sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
-        window.alert('Password reset email sent, check your inbox.');
+        this.notificationService.showSuccess('Password reset email sent, check your inbox.', 'Forgot Password');
       })
       .catch((error) => {
-        window.alert(error);
+        this.notificationService.showError(error.message, 'Forgot Password');
       });
   }
 
@@ -78,7 +82,7 @@ export class FirebaseService {
     return user !== null && user.emailVerified !== false ? true : false;
   }
 
-  async googleAuth() {
+  googleAuth() {
     return this.authLogin(new auth.GoogleAuthProvider()).then((res: any) => {
       if (res) {
         this.router.navigate(['dashboard']);
@@ -86,7 +90,7 @@ export class FirebaseService {
     });
   }
 
-  async authLogin(provider: any) {
+  authLogin(provider: any) {
     return this.afAuth
       .signInWithPopup(provider)
       .then((result) => {
@@ -96,7 +100,7 @@ export class FirebaseService {
         this.setUserData(result.user);
       })
       .catch((error) => {
-        window.alert(error);
+        this.notificationService.showError(error.message, 'Auth Login');
       });
   }
 
@@ -116,7 +120,7 @@ export class FirebaseService {
     });
   }
 
-  async signOut() {
+  signOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['sign-in']);

@@ -27,7 +27,7 @@
               <span class="btn-inner--icon"><img src="../assets/img/icons/common/github.svg"></span>
               <span class="btn-inner--text">Github</span>
             </a> -->
-            <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
+            <a href="javascript:void(0)" (click)="fbService.googleAuth()" class="btn btn-neutral btn-icon">
               <span class="btn-inner--icon"><img src="../assets/img/icons/common/google.svg"></span>
               <span class="btn-inner--text">Google</span>
             </a>
@@ -43,7 +43,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                 </div>
-                <input class="form-control" placeholder="Email" type="email" #userEmail>
+                <input class="form-control" placeholder="Email" type="email" #userEmail autocomplete="on">
               </div>
             </div>
             <div class="form-group">
@@ -51,13 +51,12 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                 </div>
-                <input class="form-control" placeholder="Password" type="password" #userPassword>
+                <input class="form-control" placeholder="Password" type="password" #userPassword autocomplete="on">
               </div>
             </div>
             <div class="text-center">
-              <button type="button" class="btn btn-primary my-4"
-                [disabled]="userEmail.length < 5 || userPassword.length < 5"
-                (click)="fbService.signIn(userEmail, userPassword)"
+              <button type="button" class="btn btn-primary my-4"               
+                (click)="fbService.signIn(userEmail.value, userPassword.value)"
                 >Sign in</button>
             </div>
           </form>
