@@ -8,7 +8,7 @@ export class NotificationService {
 
   count = 0;
   options = {
-    positionClass: 'toast-top-center',
+    positionClass: 'toast-top-end',
     closeButton: true,
     timeOut: 4000,
     extendedTimeOut: 2500,

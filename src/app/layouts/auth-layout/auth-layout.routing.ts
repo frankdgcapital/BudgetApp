@@ -5,8 +5,8 @@ import { LoginComponent } from '../../pages-auth/login/login.component';
 import { RegisterComponent } from '../../pages-auth/register/register.component';
 
 export const AuthLayoutRoutes: Routes = [
-    { path: 'login',          component: LoginComponent },
-    { path: 'register',       component: RegisterComponent },
+    { path: 'sign-in',          component: LoginComponent },
+    { path: 'sign-up',       component: RegisterComponent },
     { path: 'forgot-password',       component: ForgotPasswordComponent },
     { path: 'verify-email',       component: VerifyEmailComponent }
 ];

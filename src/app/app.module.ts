@@ -30,7 +30,7 @@ import { NotificationService } from './services/notification.service';
     ComponentsModule,
     NgbModule,
     RouterModule,
-    ToastrModule,
+    ToastrModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,

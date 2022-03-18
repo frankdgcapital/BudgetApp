@@ -1,4 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
   selector: 'app-login',
@@ -6,9 +8,12 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  constructor() {}
+  constructor(public fbService: FirebaseService, private router: Router) { }
 
   ngOnInit() {
+    if (this.fbService.isLoggedIn) {
+      this.router.navigate(['dashboard']);
+    }
   }
   ngOnDestroy() {
   }

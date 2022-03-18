@@ -15,7 +15,7 @@ const routes: Routes =[
     pathMatch: 'full',
   }, {
     path: '',
-    canActivate: [AnonymousGuardService],
+    canActivate: [AuthGuardService],
     component: AdminLayoutComponent,
     children: [
       {
@@ -25,7 +25,7 @@ const routes: Routes =[
     ]
   }, {
     path: '',
-    canActivate: [AuthGuardService],
+    canActivate: [AnonymousGuardService],
     component: AuthLayoutComponent,
     children: [
       {
