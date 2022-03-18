@@ -6,7 +6,8 @@ import { UserProfileComponent } from '../../pages-admin/user-profile/user-profil
 import { TablesComponent } from '../../pages-admin/tables/tables.component';
 import { BudgetTemplateComponent } from 'src/app/pages-admin/budget-template/budget-template.component';
 import { FamilyMembersComponent } from 'src/app/pages-admin/family-members/family-members.component';
-import { AuthGuardService } from 'src/app/guards/auth-guard.service';
+import { BudgetCategoriesComponent } from 'src/app/pages-admin/budget-categories/budget-categories.component';
+import { BudgetHomeComponent } from 'src/app/pages-admin/budget-home/budget-home.component';
 
 export const AdminLayoutRoutes: Routes = [
     {
@@ -32,5 +33,13 @@ export const AdminLayoutRoutes: Routes = [
     {
         path: 'family-members',
         component: FamilyMembersComponent,
+    },
+    {
+        path: 'budget-categories',
+        component: BudgetCategoriesComponent,
+    },
+    {
+        path: 'budget-home',
+        component: BudgetHomeComponent,
     }
 ];

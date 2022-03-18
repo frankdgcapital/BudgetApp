@@ -12,6 +12,8 @@ import { TablesComponent } from '../../pages-admin/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BudgetTemplateComponent } from 'src/app/pages-admin/budget-template/budget-template.component';
 import { FamilyMembersComponent } from 'src/app/pages-admin/family-members/family-members.component';
+import { BudgetCategoriesComponent } from 'src/app/pages-admin/budget-categories/budget-categories.component';
+import { BudgetHomeComponent } from 'src/app/pages-admin/budget-home/budget-home.component';
 
 @NgModule({
   imports: [
@@ -29,7 +31,9 @@ import { FamilyMembersComponent } from 'src/app/pages-admin/family-members/famil
     TablesComponent,
     IconsComponent,
     BudgetTemplateComponent,
-    FamilyMembersComponent
+    FamilyMembersComponent,
+    BudgetCategoriesComponent,
+    BudgetHomeComponent
   ]
 })
 
