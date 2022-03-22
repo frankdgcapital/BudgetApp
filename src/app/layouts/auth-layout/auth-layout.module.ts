@@ -9,6 +9,7 @@ import { LoginComponent } from '../../pages-auth/login/login.component';
 import { RegisterComponent } from '../../pages-auth/register/register.component';
 import { ForgotPasswordComponent } from '../../pages-auth/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from '../../pages-auth/verify-email/verify-email.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -16,7 +17,7 @@ import { VerifyEmailComponent } from '../../pages-auth/verify-email/verify-email
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   declarations: [
     LoginComponent,

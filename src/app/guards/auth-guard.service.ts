@@ -16,14 +16,14 @@ export class AuthGuardService implements CanActivate {
     private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    if (!this.fbService.isLoggedIn) {
+    const isAuth = this.fbService.isLoggedIn;
+    if (!isAuth) {
       console.log('NOT AUTHENTICATED');
       this.notificationService.showWarning('The current user is not authenticated!', 'Unauthenticated User');
       this.router.navigate(['sign-in']);
       return false;
     }
     console.log('AUTHENTICATED');
-
-    return true;
+    return isAuth;
   }
 }

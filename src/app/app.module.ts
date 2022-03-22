@@ -22,7 +22,6 @@ import { FirebaseService } from './services/firebase.service';
 import { ToastrModule } from 'ngx-toastr';
 import { NotificationService } from './services/notification.service';
 
-
 @NgModule({
   imports: [
     BrowserAnimationsModule,

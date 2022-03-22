@@ -10,9 +10,6 @@ import { FirebaseService } from './services/firebase.service';
 export class AppComponent {
   title = 'Family Budget';
 
-  constructor(private fbService: FirebaseService, private router: Router){
-    if(!this.fbService.isLoggedIn){
-      this.router.navigate(['login']);
-    }
+  constructor() {
   }
 }

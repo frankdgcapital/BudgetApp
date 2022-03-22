@@ -23,7 +23,7 @@ import { BudgetHomeComponent } from 'src/app/pages-admin/budget-home/budget-home
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-    ClipboardModule
+    ClipboardModule,
   ],
   declarations: [
     DashboardComponent,
